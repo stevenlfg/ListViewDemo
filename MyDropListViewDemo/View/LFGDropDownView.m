@@ -42,12 +42,27 @@
         self.groupingTableView.delegate = self;
         self.groupingTableView.dataSource = self;
         self.groupingTableView.clipsToBounds = YES;
+        self.groupingTableView.showsVerticalScrollIndicator = YES;
         self.groupingTableView.backgroundColor = [UIColor clearColor];
         [bgImgView addSubview:self.groupingTableView];
         
         self.groupingTableView.tableHeaderView = headView;
+        
+        UIButton *editBtn = [[UIButton alloc]init];
+        editBtn.frame = CGRectMake(10, 240+12, 190, 31);
+        [editBtn setBackgroundImage:[UIImage imageNamed:@"light_green_drop_down_background"] forState:UIControlStateNormal];
+        [editBtn setBackgroundImage:[UIImage imageNamed:@"light_green_drop_down_background_highlight"] forState:UIControlStateHighlighted];
+        [editBtn setTitle:@"编辑分组" forState:UIControlStateNormal];
+        [editBtn setTitleColor:[UIColor colorWithHexString:@"#888888"] forState:UIControlStateNormal];
+        [editBtn addTarget:self action:@selector(editBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        editBtn.titleLabel.font = [UIFont systemFontOfSize:15];
+        [bgImgView addSubview:editBtn];
     }
     return self;
+}
+- (void)editBtnClick
+{
+    
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.dataAry.count;
